@@ -28,7 +28,7 @@
 <meta property="og:description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備HA(High Availability)、HP(High Performance)、HS(High scale)&lt;註1&gt; 驗證身分會變成一個更加複雜的事情">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-08-27T16:11:46.000Z">
-<meta property="article:modified_time" content="2021-08-28T11:05:31.412Z">
+<meta property="article:modified_time" content="2021-08-28T11:12:38.259Z">
 <meta property="article:author" content="Teddy Xiong">
 <meta property="article:tag" content="Token">
 <meta property="article:tag" content="jwt">
@@ -181,7 +181,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-08-28 00:11:46 / 修改時間：19:05:31" itemprop="dateCreated datePublished" datetime="2021-08-28T00:11:46+08:00">2021-08-28</time>
+              <time title="創建時間：2021-08-28 00:11:46 / 修改時間：19:12:38" itemprop="dateCreated datePublished" datetime="2021-08-28T00:11:46+08:00">2021-08-28</time>
             </span>
 
           
@@ -285,6 +285,7 @@
 </li>
 </ul>
 <h3 id="小節"><a href="#小節" class="headerlink" title="小節"></a>小節</h3><p>在看過JWT的簡易介紹後相信對於JWT的特性有一定的了解，如果想看更加詳細的資料歡迎參閱<a target="_blank" rel="noopener" href="https://5xruby.tw/posts/what-is-jwt">這裡</a></p>
+<hr>
 <h2 id="實際應用"><a href="#實際應用" class="headerlink" title="實際應用"></a>實際應用</h2><h3 id="介紹"><a href="#介紹" class="headerlink" title="介紹"></a>介紹</h3><p>這個情況用於一個處理IoT的分散式系統，在接收來自IoT設備的數據，處理過後在網站上呈現視覺資料。<br>並且可以透過網站，對IoT設備進行遠程操作。</p>
 <p>設計網站的第一步，肯定是需要處理使用者的登入、註冊以及身分驗證等業務邏輯。</p>
 <h2 id="分散式系統以及微服務特性"><a href="#分散式系統以及微服務特性" class="headerlink" title="分散式系統以及微服務特性"></a>分散式系統以及微服務特性</h2><p>在分散式系統架構中，session在微服務架構中是一個不太可靠且開發成本大的身分驗證方式，由於session需要在伺服器儲存相關資料，所以流程通常如下</p>
@@ -325,6 +326,7 @@
 <blockquote>
 <p>request–&gt;POD B–&gt;dosomething.js–&gt;index.js—&gt;pass.js | reject.js</p>
 </blockquote>
+<hr>
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>由於session/cookie對發行的環境依賴</p>
 <p>當有request進入伺服器後，伺服器必須先進行一次撈取資料的動作，驗證完畢後驗證資料只留存在這個伺服器中。</p>
 <p>因此其他29個伺服器，並不知道這個request是合法的。</p>
@@ -335,7 +337,8 @@
 <p>因此如果看到這篇文章的你，正在設計分散式系統驗證身分的部份的話，可以多加思考驗證身分需要花費的運算資源。</p>
 <p>如果是需要做單一登入的功能，那更恭喜你。你找到了一個很好的解決方案，Token絕對是可以考量的方式</p>
 <p>微服務的設計可以使每個POD的職責更加單純，在資源的運用上更加有效率。使用Token傳遞資料，除了驗證身分單純外，也減少了資源的浪費</p>
-<h3 id="註解"><a href="#註解" class="headerlink" title="註解"></a>註解</h3><ul>
+<hr>
+<h2 id="註解"><a href="#註解" class="headerlink" title="註解"></a>註解</h2><ul>
 <li><p>註一: 筆者文化素質不高，其實想講述的是一個高可靠/高效能/高彈性的系統架構，至於英文或真正的學術名詞，還請不吝糾正</p>
 </li>
 <li><p>POD其實是筆者竊取k8s的名詞，但概念上基本相同。筆者目前第一版IoT系統架構實作方式，在GCP上實作</p>
@@ -347,6 +350,13 @@
 </li>
 <li><p>聯絡方式github teddy1565</p>
 </li>
+</ul>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://5xruby.tw/posts/what-is-jwt">是誰在敲打我窗?什麼是 JWT ?</a></li>
+<li><a target="_blank" rel="noopener" href="https://ithelp.ithome.com.tw/articles/10215645">Day 1 - 分散式系統筆記</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtube.com/playlist?list=PL9jciz8qz_zyO55qECi2PD3k6lgxluYEV">NTHUOCW 周志遠教授-作業系統 Operating System</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/%E9%BA%A5%E5%85%8B%E7%9A%84%E5%8D%8A%E8%B7%AF%E5%87%BA%E5%AE%B6%E7%AD%86%E8%A8%98/%E7%AD%86%E8%A8%98-%E9%80%8F%E9%81%8E-jwt-%E5%AF%A6%E4%BD%9C%E9%A9%97%E8%AD%89%E6%A9%9F%E5%88%B6-2e64d72594f8">[筆記] 透過 JWT 實作驗證機制</a></li>
+<li><a target="_blank" rel="noopener" href="https://console.cloud.google.com/">Google Cloud Platform</a></li>
 </ul>
 
     </div>
@@ -434,7 +444,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B-Intro"><span class="nav-number">1.</span> <span class="nav-text">簡介 Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-Web-Token-JWT"><span class="nav-number">2.</span> <span class="nav-text">JSON Web Token(JWT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%AA%E7%A8%AE%E6%83%85%E6%B3%81%E9%81%A9%E5%90%88%E4%BD%BF%E7%94%A8JWT"><span class="nav-number">3.</span> <span class="nav-text">哪種情況適合使用JWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT%E7%9A%84%E7%B5%84%E6%88%90%E7%B5%90%E6%A7%8B"><span class="nav-number">4.</span> <span class="nav-text">JWT的組成結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%AF%80"><span class="nav-number">4.1.</span> <span class="nav-text">小節</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E6%87%89%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">實際應用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">5.1.</span> <span class="nav-text">介紹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%95%A3%E5%BC%8F%E7%B3%BB%E7%B5%B1%E4%BB%A5%E5%8F%8A%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%89%B9%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">分散式系統以及微服務特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%96%BCexpress%E6%90%AD%E9%85%8Dsession-cookie%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">6.1.</span> <span class="nav-text">基於express搭配session&#x2F;cookie的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%96%BCexpress%E6%90%AD%E9%85%8DJWT%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">6.2.</span> <span class="nav-text">基於express搭配JWT的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E5%8B%99%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E8%A9%B3%E7%B4%B0%E8%AA%AA%E6%98%8E"><span class="nav-number">6.3.</span> <span class="nav-text">實務系統架構詳細說明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5nodejs%E7%9A%84express%E7%82%BA%E4%BE%8B%E5%AD%90%E3%80%82%E5%A6%82%E6%9E%9C%E6%8E%A1%E7%94%A8session%E6%88%96cookie%E7%9A%84%E6%9E%B6%E6%A7%8B%E5%A6%82%E4%B8%8B"><span class="nav-number">6.3.1.</span> <span class="nav-text">以nodejs的express為例子。如果採用session或cookie的架構如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5nodejs%E7%9A%84express%E7%82%BA%E4%BE%8B%E5%AD%90%E3%80%82%E5%A6%82%E6%9E%9C%E6%8E%A1%E7%94%A8token%E7%9A%84%E6%9E%B6%E6%A7%8B%E5%A6%82%E4%B8%8B"><span class="nav-number">6.3.2.</span> <span class="nav-text">以nodejs的express為例子。如果採用token的架構如下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">6.4.</span> <span class="nav-text">結論</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A8%BB%E8%A7%A3"><span class="nav-number">6.5.</span> <span class="nav-text">註解</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B-Intro"><span class="nav-number">1.</span> <span class="nav-text">簡介 Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSON-Web-Token-JWT"><span class="nav-number">2.</span> <span class="nav-text">JSON Web Token(JWT)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%AA%E7%A8%AE%E6%83%85%E6%B3%81%E9%81%A9%E5%90%88%E4%BD%BF%E7%94%A8JWT"><span class="nav-number">3.</span> <span class="nav-text">哪種情況適合使用JWT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JWT%E7%9A%84%E7%B5%84%E6%88%90%E7%B5%90%E6%A7%8B"><span class="nav-number">4.</span> <span class="nav-text">JWT的組成結構</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%8F%E7%AF%80"><span class="nav-number">4.1.</span> <span class="nav-text">小節</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%A6%E9%9A%9B%E6%87%89%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">實際應用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8B%E7%B4%B9"><span class="nav-number">5.1.</span> <span class="nav-text">介紹</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%95%A3%E5%BC%8F%E7%B3%BB%E7%B5%B1%E4%BB%A5%E5%8F%8A%E5%BE%AE%E6%9C%8D%E5%8B%99%E7%89%B9%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">分散式系統以及微服務特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%96%BCexpress%E6%90%AD%E9%85%8Dsession-cookie%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">6.1.</span> <span class="nav-text">基於express搭配session&#x2F;cookie的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%96%BCexpress%E6%90%AD%E9%85%8DJWT%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">6.2.</span> <span class="nav-text">基於express搭配JWT的流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%A6%E5%8B%99%E7%B3%BB%E7%B5%B1%E6%9E%B6%E6%A7%8B%E8%A9%B3%E7%B4%B0%E8%AA%AA%E6%98%8E"><span class="nav-number">6.3.</span> <span class="nav-text">實務系統架構詳細說明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5nodejs%E7%9A%84express%E7%82%BA%E4%BE%8B%E5%AD%90%E3%80%82%E5%A6%82%E6%9E%9C%E6%8E%A1%E7%94%A8session%E6%88%96cookie%E7%9A%84%E6%9E%B6%E6%A7%8B%E5%A6%82%E4%B8%8B"><span class="nav-number">6.3.1.</span> <span class="nav-text">以nodejs的express為例子。如果採用session或cookie的架構如下</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5nodejs%E7%9A%84express%E7%82%BA%E4%BE%8B%E5%AD%90%E3%80%82%E5%A6%82%E6%9E%9C%E6%8E%A1%E7%94%A8token%E7%9A%84%E6%9E%B6%E6%A7%8B%E5%A6%82%E4%B8%8B"><span class="nav-number">6.3.2.</span> <span class="nav-text">以nodejs的express為例子。如果採用token的架構如下</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B5%90%E8%AB%96"><span class="nav-number">6.4.</span> <span class="nav-text">結論</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A8%BB%E8%A7%A3"><span class="nav-number">7.</span> <span class="nav-text">註解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%83%E8%80%83%E8%B3%87%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">參考資料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
