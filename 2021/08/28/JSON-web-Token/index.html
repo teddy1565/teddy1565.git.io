@@ -28,7 +28,7 @@
 <meta property="og:description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備HA(High Availability)、HP(High Performance)、HS(High scale)&lt;註1&gt; 驗證身分會變成一個更加複雜的事情">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-08-27T16:11:46.000Z">
-<meta property="article:modified_time" content="2021-08-28T11:12:38.259Z">
+<meta property="article:modified_time" content="2021-08-28T14:28:41.164Z">
 <meta property="article:author" content="Teddy Xiong">
 <meta property="article:tag" content="Token">
 <meta property="article:tag" content="jwt">
@@ -181,7 +181,7 @@
               <span class="post-meta-item-text">發表於</span>
               
 
-              <time title="創建時間：2021-08-28 00:11:46 / 修改時間：19:12:38" itemprop="dateCreated datePublished" datetime="2021-08-28T00:11:46+08:00">2021-08-28</time>
+              <time title="創建時間：2021-08-28 00:11:46 / 修改時間：22:28:41" itemprop="dateCreated datePublished" datetime="2021-08-28T00:11:46+08:00">2021-08-28</time>
             </span>
 
           
@@ -341,7 +341,7 @@
 <h2 id="註解"><a href="#註解" class="headerlink" title="註解"></a>註解</h2><ul>
 <li><p>註一: 筆者文化素質不高，其實想講述的是一個高可靠/高效能/高彈性的系統架構，至於英文或真正的學術名詞，還請不吝糾正</p>
 </li>
-<li><p>POD其實是筆者竊取k8s的名詞，但概念上基本相同。筆者目前第一版IoT系統架構實作方式，在GCP上實作</p>
+<li><p>POD其實是筆者借鑑k8s的名詞，但概念上基本相同。筆者目前第一版IoT系統架構實作方式，在GCP上實作</p>
 <p>由附載平衡器將大量請求平均到不同的Instance上，每個Instance包含了Nginx/Docker/Custom Manager</p>
 <p>先將請求透過NGX分類平衡到不同的容器中，再透過Manager傳遞容器間的資料，或是分配任務</p>
 <p>這個概念由於不太會稱呼，在後來學習K8S了解到與筆者理念相同的設計，因此筆者只針對自己的文章暫時稱這樣的模式為POD</p>
@@ -385,7 +385,10 @@
     <a href="/2021/08/27/First-Post/" rel="prev" title="First Post">
       <i class="fa fa-chevron-left"></i> First Post
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/08/28/Redis0001/" rel="next" title="Redis叢集以及大使模式應用">
+      Redis叢集以及大使模式應用 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -458,12 +461,12 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">文章</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">15</span>
         <span class="site-state-item-name">標籤</span>
       </div>
   </nav>
