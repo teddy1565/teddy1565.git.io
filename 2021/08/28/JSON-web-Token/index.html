@@ -28,7 +28,7 @@
 <meta property="og:description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備高可靠、高效能、高彈性的分散式系統架構 驗證身分相較於在單機伺服器上會變成一個更加複雜的事情">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-08-27T16:11:46.000Z">
-<meta property="article:modified_time" content="2021-08-29T08:38:18.282Z">
+<meta property="article:modified_time" content="2021-08-29T08:44:06.025Z">
 <meta property="article:author" content="Teddy Xiong">
 <meta property="article:tag" content="Token">
 <meta property="article:tag" content="jwt">
@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-08-29 16:38:18" itemprop="dateModified" datetime="2021-08-29T16:38:18+08:00">2021-08-29</time>
+                <time title="修改時間：2021-08-29 16:44:06" itemprop="dateModified" datetime="2021-08-29T16:44:06+08:00">2021-08-29</time>
               </span>
 
           
@@ -335,16 +335,18 @@
 <blockquote>
 <p>request–&gt;POD B–&gt;dosomething.js–&gt;index.js—&gt;pass.js | reject.js</p>
 </blockquote>
+<p>透過以上流程，可以看到。request在傳入單個複本時，不必再消耗效能對DB操作。</p>
+<p>同時由於對簽署的伺服器沒有依賴性，可以很輕易的的請求傳遞給其他服務進行操作。</p>
+<p>解決了session/cookie在分散式系統中難以應用的問題。</p>
 <hr>
 <h3 id="結論"><a href="#結論" class="headerlink" title="結論"></a>結論</h3><p>由於session/cookie對發行的環境依賴</p>
 <p>當有request進入伺服器後，伺服器必須先進行一次撈取資料的動作，驗證完畢後驗證資料只留存在這個伺服器中。</p>
 <p>因此其他29個伺服器，並不知道這個request是合法的。</p>
-<p>為了避免反覆的驗證以及資料傳遞上的複雜，驗證完畢後的request隨後需要在這個伺服器上解析請求，並且完成他</p>
-<p>這個問題雖然能夠透過快取或其他設計方式解決，但相比Token設計需要花費更大的心力處理。</p>
-<p>那為何不直接使用token呢?</p>
+<p>為了避免反覆的驗證以及資料傳遞上的複雜，驗證完畢後的request隨後需要在這個伺服器上解析請求，並且完成這個請求動作。</p>
+<p>這個問題雖然能夠透過快取等或其他設計方式解決，但相比Token設計需要花費更大的心力處理。</p>
 <p>使用Token既不需要考慮跨網域跨單元的問題，在資料傳遞上更加單純。安全性方面來說，相較session/cookie的模式也絲毫不遜色</p>
-<p>因此如果看到這篇文章的你，正在設計分散式系統驗證身分的部份的話，可以多加思考驗證身分需要花費的運算資源。</p>
-<p>如果是需要做單一登入的功能，那更恭喜你。你找到了一個很好的解決方案，Token絕對是可以考量的方式</p>
+<p>因此如果看到這篇文章的讀者，正在設計分散式系統驗證身分的部份的話，可以多加思考驗證身分需要花費的運算資源。</p>
+<p>如果是需要做單一登入的功能，那更恭喜你。你找到了一個很好的解決方案，Token絕對是可以納入考量之一的實踐方式</p>
 <p>微服務的設計可以使每個POD的職責更加單純，在資源的運用上更加有效率。使用Token傳遞資料，除了驗證身分單純外，也減少了資源的浪費</p>
 <hr>
 <h2 id="註解"><a href="#註解" class="headerlink" title="註解"></a>註解</h2><ul>
