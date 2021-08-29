@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"teddy1565.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備HA(High Availability)、HP(High Performance)、HS(High scale)&lt;註1&gt; 驗證身分會變成一個更加複雜的事情">
+  <meta name="description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備高可靠、高效能、高彈性的分散式系統架構 驗證身分相較於在單機伺服器上會變成一個更加複雜的事情">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JSON web Token 及分散式系統應用簡介">
 <meta property="og:url" content="https://teddy1565.github.io/2021/08/28/JSON-web-Token/index.html">
 <meta property="og:site_name" content="TeddyXiong Blog">
-<meta property="og:description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備HA(High Availability)、HP(High Performance)、HS(High scale)&lt;註1&gt; 驗證身分會變成一個更加複雜的事情">
+<meta property="og:description" content="簡介 Intro什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。 在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備高可靠、高效能、高彈性的分散式系統架構 驗證身分相較於在單機伺服器上會變成一個更加複雜的事情">
 <meta property="og:locale" content="zh_TW">
 <meta property="article:published_time" content="2021-08-27T16:11:46.000Z">
-<meta property="article:modified_time" content="2021-08-29T08:36:13.138Z">
+<meta property="article:modified_time" content="2021-08-29T08:38:18.282Z">
 <meta property="article:author" content="Teddy Xiong">
 <meta property="article:tag" content="Token">
 <meta property="article:tag" content="jwt">
@@ -187,7 +187,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新於</span>
-                <time title="修改時間：2021-08-29 16:36:13" itemprop="dateModified" datetime="2021-08-29T16:36:13+08:00">2021-08-29</time>
+                <time title="修改時間：2021-08-29 16:38:18" itemprop="dateModified" datetime="2021-08-29T16:38:18+08:00">2021-08-29</time>
               </span>
 
           
@@ -202,8 +202,8 @@
 
       
         <h2 id="簡介-Intro"><a href="#簡介-Intro" class="headerlink" title="簡介 Intro"></a>簡介 Intro</h2><p>什麼是JWT? 今天想記錄一下不同於以往的cookie以及session，在後端驗證身分的新方式 “Token”。</p>
-<p>在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備HA(High Availability)、HP(High Performance)、HS(High scale)&lt;註1&gt;</p>
-<p>驗證身分會變成一個更加複雜的事情</p>
+<p>在分散式系統中，驗證身分是一件複雜的事情。特別是如果要設計一套具備高可靠、高效能、高彈性的分散式系統架構</p>
+<p>驗證身分相較於在單機伺服器上會變成一個更加複雜的事情</p>
 <span id="more"></span>
 
 <hr>
@@ -348,7 +348,7 @@
 <p>微服務的設計可以使每個POD的職責更加單純，在資源的運用上更加有效率。使用Token傳遞資料，除了驗證身分單純外，也減少了資源的浪費</p>
 <hr>
 <h2 id="註解"><a href="#註解" class="headerlink" title="註解"></a>註解</h2><ul>
-<li><p>註一: 筆者文化素質不高，其實想講述的是一個高可靠/高效能/高彈性的系統架構，至於英文或真正的學術名詞，還請不吝糾正</p>
+<li><p>英文或真正的學術名詞，還請不吝糾正</p>
 </li>
 <li><p>POD其實是筆者借鑑k8s的名詞，但概念上基本相同。筆者目前第一版IoT系統架構實作方式，在GCP上實作</p>
 <p>由附載平衡器將大量請求平均到不同的Instance上，每個Instance包含了Nginx/Docker/Custom Manager</p>
