@@ -20,15 +20,27 @@
     var CONFIG = {"hostname":"teddy1565.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="TeddyXiong Blog">
-<meta property="og:url" content="https://teddy1565.github.io/tags/Redis/index.html">
+  <meta name="description" content="簡介 Intro這陣子為了交付各項文件，以及為了往後系統開發的流暢，接觸了許多DevOps相關的技術 本次章節打算來說一說Jest與supertest搭配Github Action的組合應用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jest與supertest搭配Github Action單元測試及CI應用">
+<meta property="og:url" content="https://teddy1565.github.io/2021/12/26/UnitTest01/index.html">
 <meta property="og:site_name" content="TeddyXiong Blog">
+<meta property="og:description" content="簡介 Intro這陣子為了交付各項文件，以及為了往後系統開發的流暢，接觸了許多DevOps相關的技術 本次章節打算來說一說Jest與supertest搭配Github Action的組合應用">
 <meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-12-26T00:40:30.000Z">
+<meta property="article:modified_time" content="2021-12-26T00:49:07.146Z">
 <meta property="article:author" content="Teddy Xiong">
+<meta property="article:tag" content="DevOps">
+<meta property="article:tag" content="CI&#x2F;CD">
+<meta property="article:tag" content="CI">
+<meta property="article:tag" content="Github">
+<meta property="article:tag" content="Github Action">
+<meta property="article:tag" content="Jest">
+<meta property="article:tag" content="suptertest">
+<meta property="article:tag" content="Unit Test">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://teddy1565.github.io/tags/Redis/">
+<link rel="canonical" href="https://teddy1565.github.io/2021/12/26/UnitTest01/">
 
 
 <script id="page-configurations">
@@ -36,12 +48,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-TW'
   };
 </script>
 
-  <title>標籤: Redis | TeddyXiong Blog</title>
+  <title>Jest與supertest搭配Github Action單元測試及CI應用 | TeddyXiong Blog</title>
   
 
 
@@ -139,51 +151,101 @@
         <div class="content-wrap">
           
 
-          <div class="content tag">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Redis
-          <small>標籤</small>
-        </h2>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-TW">
+    <link itemprop="mainEntityOfPage" href="https://teddy1565.github.io/2021/12/26/UnitTest01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Teddy Xiong">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TeddyXiong Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Jest與supertest搭配Github Action單元測試及CI應用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">發表於</span>
+              
+
+              <time title="創建時間：2021-12-26 08:40:30 / 修改時間：08:49:07" itemprop="dateCreated datePublished" datetime="2021-12-26T08:40:30+08:00">2021-12-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2021</span>
+        <h2 id="簡介-Intro"><a href="#簡介-Intro" class="headerlink" title="簡介 Intro"></a>簡介 Intro</h2><p>這陣子為了交付各項文件，以及為了往後系統開發的流暢，接觸了許多DevOps相關的技術</p>
+<p>本次章節打算來說一說Jest與supertest搭配Github Action的組合應用</p>
+<span id="more"></span>
+
+<hr>
+<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在網路上有很多關於DevOps、CI/CD相關的呼聲，幾乎快跟雲平台、AI名詞爛大街了</p>
+<p>但實際上能夠參考的中文文章有限，很多都只是淺嘗即止。</p>
+<p>不然就都是全英文的文章，對於我這種野生開發者來說，實在是太吃力了。</p>
+<p>(良心建議英文要學好RRRRRRR)</p>
+<p>那接續上一篇關於JSDoc的文章，今天要介紹的是Jest+supertest進行單元測試</p>
+<p>並且介紹Github Action的配置</p>
+<h2 id="單元測試"><a href="#單元測試" class="headerlink" title="單元測試"></a>單元測試</h2><h3 id="Jest"><a href="#Jest" class="headerlink" title="Jest"></a>Jest</h3><p>Jest是由Facebook，Inc.維護的JavaScript測試框架，由Christoph Nakazawa設計和構建，重點是簡化和支持大型Web應用程序。…</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Jest_(JavaScript_framework)">介紹可以點我直接連結到維基百科去看</a></p>
+<p>因此對Jest的介紹就不多贅述，直接進入正題</p>
+<p>…待補充</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+    
+    
+    
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2021-08-28T19:15:10+08:00"
-              content="2021-08-28">
-          08-28
-        </time>
-      </div>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DevOps/" rel="tag"># DevOps</a>
+              <a href="/tags/CI-CD/" rel="tag"># CI/CD</a>
+              <a href="/tags/CI/" rel="tag"># CI</a>
+              <a href="/tags/Github/" rel="tag"># Github</a>
+              <a href="/tags/Github-Action/" rel="tag"># Github Action</a>
+              <a href="/tags/Jest/" rel="tag"># Jest</a>
+              <a href="/tags/suptertest/" rel="tag"># suptertest</a>
+              <a href="/tags/Unit-Test/" rel="tag"># Unit Test</a>
+          </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2021/08/28/Redis0001/" itemprop="url">
-            <span itemprop="name">Redis叢集以及大使模式應用</span>
-          </a>
-      </div>
+        
 
-    </header>
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/12/21/jsdoc0001/" rel="prev" title="JSDoc 踩坑日記">
+      <i class="fa fa-chevron-left"></i> JSDoc 踩坑日記
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
   </article>
-
-    </div>
-  </div>
   
   
-  
-
   
 
 
@@ -236,6 +298,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B0%A1%E4%BB%8B-Intro"><span class="nav-number">1.</span> <span class="nav-text">簡介 Intro</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">2.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%96%AE%E5%85%83%E6%B8%AC%E8%A9%A6"><span class="nav-number">3.</span> <span class="nav-text">單元測試</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Jest"><span class="nav-number">3.1.</span> <span class="nav-text">Jest</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
